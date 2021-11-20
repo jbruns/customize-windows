@@ -8,12 +8,12 @@ This repo should work for Windows 11 Pro, Pro for Workstations, and Enterprise. 
 
 Installation
 ---
-- Clone this repository or download it as a .zip, and extract to \win11pro-deploy.
+- Clone this repository or download it as a .zip, and extract to \win11-deploy-main (or a directory of your choosing).
 - head over to https://www.microsoft.com/en-us/download/details.aspx?id=55319 and download the following files:
   - Windows 11 Security Baseline.zip
   - LGPO.zip
-- extract the Security Baseline to \win11pro-deploy\Windows11-Security-Baseline-FINAL.
-- extract (only) LGPO.exe from LGPO.zip to \win11pro-deploy\Windows11-Security-Baseline-FINAL\Scripts\Tools.
+- extract the Security Baseline to \win11-deploy-main\Windows11-Security-Baseline-FINAL.
+- extract (only) LGPO.exe from LGPO.zip to \win11-deploy-main\Windows11-Security-Baseline-FINAL\Scripts\Tools.
   - you'll know you have the right location when you see **LGPO.txt** in the same directory.
 
 - edit the `Customize-Windows11.ps1` file, and fill in your product key on line 1.
