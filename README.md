@@ -18,8 +18,8 @@ Installation
 
 - edit the `Customize-Windows11.ps1` file, and fill in your product key on line 1.
   - if you would like to omit the other steps (like uninstalling OneDrive, or installing Chocolatey), simply comment out or remove those lines.
-
-- (optional) Run `Install-SWL.ps1` to have Chocolatey install any packages that you want. Again feel free to customize the list of packages to your liking.
+- now, start an elevated (Admin) Windows Terminal, and run `Customize-Windows11.ps1`.
+- (optional) Also run `Install-SWL.ps1` to have Chocolatey install any packages that you want. Again feel free to customize the list of packages to your liking.
   - I may switch this to WinGet in the future; but it doesn't seem like there's a straightforward way to automate installing WinGet.
 
 - From here, I really like [StartAllBack](https://www.startallback.com) to help restore some of the start/taskbar/explorer features (and the darn context menus).
