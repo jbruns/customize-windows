@@ -69,8 +69,8 @@ Horribly fatal errors along the way should (hopefully very early) be caught - bu
 | `-OverlayGPO` | Path to LGPO-created backup of "overlay" settings - that is, changes that will applied AFTER the Security Baseline settings. | Included with release |
 | `-ServicesToEnable` | Array of service names that will be restored to 'Manual' start. All Xbox/Gaming services are disabled during Security Baseline application, so by default these services are reset. | "XboxGipSvc", "XblAuthManager", "XblGameSave", "XboxNetApiSvc" |
 | `-FeaturesToEnable` | Array of feature names to enable. `Microsoft-Hyper-V` has an additional check to ensure it is being installed on a physical machine. | "TFTP", "TelnetClient", "Microsoft-Windows-Subsystem-Linux", "Microsoft-Hyper-V" |
-| `-ServicesToDisable` | Array of service names that will be set to 'Disabled' start. Conservative by default, but be sure to audit the list first for your scenario. | See list below |
-| `-AppsToRemove` | Array of AppX package names that will be uninstalled (for the current user and "online/provisioned"). | See list below |
+| `-ServicesToDisable` | Array of service names that will be set to 'Disabled' start. Conservative by default, but be sure to audit the list first for your scenario. | See [list](https://github.com/jbruns/customize-windows#services-disabled-by-default) below |
+| `-AppsToRemove` | Array of AppX package names that will be uninstalled (for the current user and "online/provisioned"). | See [list](https://github.com/jbruns/customize-windows#appx-packages-uninstalled-by-default) below |
 <br>
 
 ## Updating the Group Policy Settings
