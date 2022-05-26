@@ -14,7 +14,7 @@ param (
     $OverlayGPO = (Resolve-Path ".\WorkstationConfigOverlay\{7E5797A8-4B91-4F83-ACBE-CFED9FDA1200}").Path,
     
     # Array of service names belonging to Xbox/Gaming, which will be re-enabled following Security Baseline application
-    $XboxServices = @(
+    $ServicesToEnable = @(
         "XboxGipSvc",
         "XblAuthManager",
         "XblGameSave",
@@ -210,11 +210,11 @@ Push-Location (Join-Path $SecurityBaselinePath "\Scripts")
 Pop-Location
 
 Write-Host "Applying Workstation customizations."
-Start-Process -FilePath $LGPOExe -ArgumentList "/v /g $WorkstationConfigGPO" -NoNewWindow
+Start-Process -FilePath $LGPOExe -ArgumentList "/v /g $OverlayGPO" -NoNewWindow
 
-Write-Host "Restoring Xbox services startup type."
-foreach ($XboxService in $XboxServices) {
-    Set-Service -Name $XboxService -StartupType Manual
+Write-Host "Enabling/restoring services startup state."
+foreach ($ServiceName in $ServicesToEnable) {
+    Set-Service -Name $ServiceName -StartupType Manual
 }
 
 Write-Host "Restoring XblGameSave scheduled task."
