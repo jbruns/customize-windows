@@ -4,11 +4,12 @@ $desiredPackages = @(
 	"discord.discord",
 	"mozilla.firefox",
 	"slacktechnologies.slack",
+	"OpenWhisperSystems.Signal",
 	"notepad++.notepad++",
 	"microsoft.visualstudiocode",
 	"7zip.7zip",
 	"airexplorer.airexplorer",
-	"startisback.startisback",
+	"StartIsBack.startallback",
 	"IrfanSkiljan.IrfanView",
 	"Valve.Steam",
 	"Microsoft.PowerToys",
@@ -18,7 +19,8 @@ $desiredPackages = @(
 	"PeterPawlowski.foobar2000",
 	"VideoLAN.VLC",
 	"Nextcloud.NextcloudDesktop",
-	"Spotify.Spotify"
+	"Spotify.Spotify",
+	"GPSoftware.DirectoryOpus"
 )
 $localPackages = winget list
 foreach ($package in $desiredPackages) {
