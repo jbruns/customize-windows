@@ -24,10 +24,10 @@ param (
     # Array of Windows Optional Features to enable. 
     # There is an additional check for Hyper-V to ensure the machine is not a VM, so if you want nested virt, no-op that check below.
     $FeaturesToEnable = @(
-        "TFTP", # TFTP Client
-        "TelnetClient",
         "Microsoft-Windows-Subsystem-Linux",
-        "Microsoft-Hyper-V"
+        "Microsoft-Hyper-V-Tools-All",
+        "Microsoft-Hyper-V-Services",
+        "VirtualMachinePlatform"
     ),
 
     # Array of service names that will be set to Disabled state. Check this list and ensure that none are required in your situation.
@@ -38,11 +38,6 @@ param (
         "AJRouter",
         # Application Level Gateway
         "ALG",
-        # https://docs.microsoft.com/en-us/windows-server/networking/branchcache/branchcache
-        "PeerDist",
-        # Device Management
-        # https://docs.microsoft.com/en-us/windows/configuration/wcd/wcd-devicemanagement
-        "dmwappushsvc",
         # Internet Connection Sharing
         "SharedAccess",
         # Microsoft Windows SMS Router Service
@@ -201,7 +196,7 @@ If (-Not($SecurityBaselinePath)) {
         Write-Error "Failed to download Security Baseline from $($DownloadLocations.$WindowsVersion.$WindowsDisplayVersion)." -ErrorAction Stop
     }
     Expand-Archive $SecurityBaselineZip -DestinationPath $PSScriptRoot # -PassThru should be an option in later PS versions so we won't have to do the following..
-    $SecurityBaselinePath = (Get-ChildItem -Path $PSScriptRoot -Directory -Filter "*Security-Baseline*" -Recurse | Select-Object FullName)[0].FullName
+    $SecurityBaselinePath = (Get-ChildItem -Path $PSScriptRoot -Directory -Filter "*Baseline*" -Recurse | Select-Object FullName)[0].FullName
 }
 
 If (-Not(Test-Path (Join-Path $SecurityBaselinePath "\Scripts\Baseline-LocalInstall.ps1"))) {
