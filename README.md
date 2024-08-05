@@ -97,18 +97,24 @@ Finally, I run `GPRESULT /H WorkstationConfigOverlay-mmddyy.html` to generate a 
 
 ---
 
+## Printing (or "why are my print jobs silently failing?")
+
+If you need to be able to print to either a local USB or network printer, and you are not joined to a domain, a policy added by the Security Baseline will probably get in your way:
+
+*Local Computer Policy\User Configuration\Administrative Templates\Control Panel\Printers*
+  - Enable Device Control Printing Restrictions -> set to Disabled
+
+You can verify that this policy is denying print jobs by examining the Event Log under Applications and Services Logs\Microsoft\Windows\PrintService\Admin. You'll see something like:
+
+`The current print job was rejected due to Device Control Print Restrictions. Rejection Reason: Non-USB local printing not permitted`
+
 ## Services Disabled by default
 
 | Service | Notes |
 | ------- | ----- |
 | AJRouter | AllJoyn Router. https://openconnectivity.org/technology/reference-implementation/alljoyn/ |
 | ALG | Application Level Gateway |
-| PeerDist | BranchCache. https://docs.microsoft.com/en-us/windows-server/networking/branchcache/branchcache |
-| dmwappushsvc | https://docs.microsoft.com/en-us/windows/configuration/wcd/wcd-devicemanagement |
 | SharedAccess | Internet Connection Sharing |
-| iphlpsvc | IP Helper (IPv6 transition) |
-| IpxlatCfgSvc | IP Translation Configuration Service (IPv6 transition) |
-| MSiSCSI | iSCSI Support |
 | SmsRouter | Microsoft Windows SMS Router Service |
 | SEMgrSvc | Payments and NFC/SE Manager |
 | PhoneSvc | Phone Service |
@@ -119,16 +125,31 @@ Finally, I run `GPRESULT /H WorkstationConfigOverlay-mmddyy.html` to generate a 
 
 ## AppX packages uninstalled by default
 
-        "Microsoft.MicrosoftStickyNotes"
-        "Microsoft.ZuneMusic"
-        "Microsoft.MicrosoftSolitaireCollection"
-        "Microsoft.MicrosoftOfficeHub"
-        "Microsoft.BingWeather"
-        "Microsoft.ZuneVideo"
-        "Microsoft.Office.OneNote"
-        "Microsoft.WindowsFeedbackHub"
-        "Microsoft.Messaging"
-        "Microsoft.Getstarted"
-        "Microsoft.GetHelp"
+        # Windows 10 specific
+        "Microsoft.Office.OneNote",
+        "Microsoft.Messaging",
+        "Microsoft.SkypeApp",
+        # Windows 11 + Windows 10 common
+        "Clipchamp.Clipchamp",
+        "Microsoft.BingNews",
+        "Microsoft.BingWeather",
+        "Microsoft.GetHelp",
+        "Microsoft.Getstarted",
+        "Microsoft.MicrosoftOfficeHub",
+        "Microsoft.MicrosoftSolitaireCollection",
+        "Microsoft.MicrosoftStickyNotes",
+        "Microsoft.OutlookForWindows",
+        "Microsoft.Paint",
+        "Microsoft.People",
+        "Microsoft.PowerAutomateDesktop",
+        "Microsoft.Windows.DevHome",
+        "Microsoft.Windows.Photos",
+        "Microsoft.WindowsAlarms",
         "Microsoft.windowscommunicationsapps",
-        "Microsoft.SkypeApp"
+        "Microsoft.WindowsFeedbackHub",
+        "Microsoft.WindowsMaps",
+        "Microsoft.WindowsSoundRecorder",
+        "Microsoft.YourPhone",
+        "Microsoft.ZuneMusic",
+        "Microsoft.ZuneVideo",
+        "MicrosoftCorporationII.QuickAssist"
