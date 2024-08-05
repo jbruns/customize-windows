@@ -11,7 +11,7 @@ param (
     $LGPOExe, # = Join-Path $SecurityBaselinePath "\Scripts\Tools\LGPO.exe",
 
     # Path to LGPO-created backup of "overlay" settings - that is, changes that will applied AFTER the Security Baseline settings.
-    $OverlayGPO = (Resolve-Path ".\WorkstationConfigOverlay\{7E5797A8-4B91-4F83-ACBE-CFED9FDA1200}").Path,
+    $OverlayGPO = (Resolve-Path ".\WorkstationConfigOverlay\{D0E0AD46-0107-46F7-B4DC-8F4CCBAA3DA1}").Path,
     
     # Array of service names belonging to Xbox/Gaming, which will be re-enabled following Security Baseline application
     $ServicesToEnable = @(
@@ -112,9 +112,9 @@ If (-Not(Test-Path $OverlayGPO)) {
 
 # Determine Windows version
 $ComputerInfo = Get-ComputerInfo
-$WindowsDisplayVersion = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name DisplayVersion).DisplayVersion
+$WindowsDisplayVersion = $ComputerInfo.OsDisplayVersion
 
-If ($ComputerInfo.WindowsProductName -like "*Windows Server*") {
+If ($ComputerInfo.OsName -like "*Windows Server*") {
     Write-Error "This script does not support Windows Server, but the Security Baseline package by itself does." -ErrorAction Stop
 }
 
@@ -145,11 +145,11 @@ Switch ($ComputerInfo.CsModel) {
     }
 }
 
-Switch ($ComputerInfo.WindowsProductName.SubString(0,10)) {
-    "Windows 10" {
+Switch ($ComputerInfo.OsName.SubString(0,20)) {
+    "Microsoft Windows 10" {
         $WindowsVersion = "Win10"
     }
-    "Windows 11" {
+    "Microsoft Windows 11" {
         $WindowsVersion = "Win11"
     }
 }
