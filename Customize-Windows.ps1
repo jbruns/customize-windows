@@ -45,11 +45,6 @@ param (
         "dmwappushsvc",
         # Internet Connection Sharing
         "SharedAccess",
-        # IP Helper/IP Translation Configuration Service. You may need these for certain IPv6 transition technologies (teredo, 6to4, ...)
-        "iphlpsvc",
-        "IpxlatCfgSvc",
-        # iSCSI support
-        "MSiSCSI",
         # Microsoft Windows SMS Router Service
         "SmsRouter",
         # Payments and NFC/SE Manager
@@ -68,19 +63,34 @@ param (
 
     # Array of AppX package names that will be uninstalled (for the current user and "online/provisioned").
     $AppsToRemove = @(
-        "Microsoft.MicrosoftStickyNotes"
-        "Microsoft.ZuneMusic"
-        "Microsoft.MicrosoftSolitaireCollection"
-        "Microsoft.MicrosoftOfficeHub"
-        "Microsoft.BingWeather"
-        "Microsoft.ZuneVideo"
-        "Microsoft.Office.OneNote"
-        "Microsoft.WindowsFeedbackHub"
-        "Microsoft.Messaging"
-        "Microsoft.Getstarted"
-        "Microsoft.GetHelp"
+        # Windows 10 specific
+        "Microsoft.Office.OneNote",
+        "Microsoft.Messaging",
+        "Microsoft.SkypeApp",
+        # Windows 11 + Windows 10 common
+        "Clipchamp.Clipchamp",
+        "Microsoft.BingNews",
+        "Microsoft.BingWeather",
+        "Microsoft.GetHelp",
+        "Microsoft.Getstarted",
+        "Microsoft.MicrosoftOfficeHub",
+        "Microsoft.MicrosoftSolitaireCollection",
+        "Microsoft.MicrosoftStickyNotes",
+        "Microsoft.OutlookForWindows",
+        "Microsoft.Paint",
+        "Microsoft.People",
+        "Microsoft.PowerAutomateDesktop",
+        "Microsoft.Windows.DevHome",
+        "Microsoft.Windows.Photos",
+        "Microsoft.WindowsAlarms",
         "Microsoft.windowscommunicationsapps",
-        "Microsoft.SkypeApp"
+        "Microsoft.WindowsFeedbackHub",
+        "Microsoft.WindowsMaps",
+        "Microsoft.WindowsSoundRecorder",
+        "Microsoft.YourPhone",
+        "Microsoft.ZuneMusic",
+        "Microsoft.ZuneVideo",
+        "MicrosoftCorporationII.QuickAssist"
     )
 )
 
@@ -88,12 +98,11 @@ param (
 $DownloadLocations = @{
     "LGPO" = "https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/LGPO.zip"
     "Win11" = @{
-        "21H2" = "https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/Windows%2011%20Security%20Baseline.zip"
+        "22H2" = "https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/Windows%2011%20version%2022H2%20Security%20Baseline.zip"
+        "23H2" = "https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/Windows%2011%20v23H2%20Security%20Baseline.zip"
     }
     "Win10" = @{
-        "21H2" = "https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/Windows%2010%20version%2021H2%20Security%20Baseline.zip"
-        "21H1" = "https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/Windows%2010%20version%2021H1%20Security%20Baseline.zip"
-        "20H2" = "https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/Windows%2010%20Version%2020H2%20and%20Windows%20Server%20Version%2020H2%20Security%20Baseline.zip"
+        "22H2" = "https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/Windows%2010%20version%2022H2%20Security%20Baseline.zip"
     }
 }
 
