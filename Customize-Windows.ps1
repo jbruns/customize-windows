@@ -162,7 +162,7 @@ If ((-Not($WindowsVersion) -or (-Not($DomainRole)))) {
     Write-Error "Couldn't determine Windows version (10? 11?) or domain join state." -ErrorAction Stop
 }
 $SecurityBaselineArgs = @{}
-$SecurityBaselineArgs.Add($WindowsVersion + $DomainRole,"")
+$SecurityBaselineArgs.Add($WindowsVersion + $DomainRole,$true)
 
 # Check for LGPO.exe and if not explicitly specified, download it.
 If (-Not($LGPOExe)) {
